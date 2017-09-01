@@ -1,63 +1,317 @@
 <!doctype html><head><script src="eveal.js"></script></head><body>
 
-
-# Talk
-### with slides
-
-<small>
-  by me
-  <br/>
-
-  Sometime 2017
-</small>
+# Docker Talker
+### Overview of Docker & Kubernetes</br> + Ideas for Future Usage
 
 <small>
-  _?_ for keyboard shortcuts<br/>
+  by
+  [traceypooh](https://twitter.com/tracey_pooh)
+  <a href="https://github.com/traceypooh"><img style="margin:0" src="git.png"/></a><br/>
+  June 2017
+
+  _ESC_ for slide overview<br/>
 </small>
 
----
-### Run these slides Locally
 
+
+<a href="https://docker.com">
+  <img src="https://www.docker.com/sites/default/files/mono_vertical_large.png" style="position:fixed; left:0; bottom:0; max-width:10%;"/>
+</a>
+<a href="https://archive.org">
+  <img src="https://archive.org/images/glogo.png" style="position:fixed; bottom:0; left:45%;"/>
+</a>
+<a href="https://kubernetes.io">
+  <img src="https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png" style="position:fixed; bottom:0; right:0; max-width:10%;"/>
+</a>
+
+
+---
+### Meta
+- Docker - ~15min
+- Kubernetes - ~15min
+- Proposing more docker - ~15min
+- Open Issues / Brainstorm / Discusion / Questions - ~15min
+
+---
+# Act I - Setting
+
+---
+### Docker
+https://www.docker.com/docker-mac
+
+- mac: hypervisor (pthread per vCPU)
+- linux: lxc
+- windows: hyper-v
+- AWS
+- GCE / Google Compute Platform
+
+### Key Concepts:
+- _images_ readonly
+- _containers_ **copy-on-write** layers; writes over first relevant layer
+
+---
+### Docker Advantages:
+- 4-6x times # of docker servers as KVM VMs
+- Google search, gmail, Docs, etc -- containers
+
+- docker **just abstracts the OS kernel** -- not the entire device (VMs)
+- local dev environments exactly like live server
+- test/run multiple dev environments & versions -- all on same host
+
+- reliable, rebuildable <u>entire</u> recipe for re/building
+
+---
+### Yah, but why?
+
+
+---
+### need to build a binary?                <!-- .element: class="fragment" data-fragment-index="1" -->
+docker it!                                 <!-- .element: class="fragment" data-fragment-index="2" -->
+### on a plane w/o network?                <!-- .element: class="fragment" data-fragment-index="3" -->
+docker it!                                 <!-- .element: class="fragment" data-fragment-index="4" -->
+### debug a server?                        <!-- .element: class="fragment" data-fragment-index="5" -->
+docker it!                                 <!-- .element: class="fragment" data-fragment-index="6" -->
+### tweak anything petabox / website dev?  <!-- .element: class="fragment" data-fragment-index="7" -->
+docker it!                                 <!-- .element: class="fragment" data-fragment-index="8" -->
+### derive some files?                     <!-- .element: class="fragment" data-fragment-index="9" -->
+slap a docker sticker on it!               <!-- .element: class="fragment" data-fragment-index="10" -->
+
+---
+<!-- .slide: data-background="http://alrai.com/uploads/images/2017/01/04/x39019.jpg.pagespeed.ic.TPL-NEpZnn.jpg" -->
+
+
+---
+### Docker examples
+run xenial:
 ``` bash
-git clone git@github.com:traceypooh/eveal.js; open eveal.js/index.html
+docker run --rm -it  ubuntu:latest  bash
 ```
 
-(network not needed after clone)
-
----
-### Say Something
-- keep calm
-- carry on
-
----
-### Choices
-
-You can:
-- copy the _index.html_ file to _tech-deck.html_
-   - modify it
-   - put as many 'decks' as you like in this repo
-   - and then open tech-deck.html in your browser
-- or keep cloning/forking to multiple repositories..
-
----
-I like to
+run zesty:
 ``` bash
-atom README.md
+docker run --rm -it  ubuntu:rolling  bash
 ```
 
-to get nice coloring and edit help/cues from my editor, Atom.
+_this talk_:
+``` bash
+git clone git@github.com:traceypooh/docker-talker; open docker-talker/index.html
+```
+
+
+---
+### Docker resources
+- docker best practices
+  - https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/
+
+- misc
+  - http://www.zdnet.com/article/what-is-docker-and-why-is-it-so-darn-popular/
+
+
+---
+### Kubernetes (greek: helmsman/pilot)
+<blockquote cite="https://en.wikipedia.org/wiki/Kubernetes">
+<q>open-source system for automating deployment, scaling and management of containerized applications that was originally designed by Google and donated to the Cloud Native Computing Foundation.
+<br/><br/>
+It aims to provide a "platform for automating deployment, scaling, and operations of application containers across clusters of hosts"
+</blockquote>
+
+
+---
+### Kubernetes gist
+- pods of containers
+  - can share resources among whole group
+
+- each pod runs on on physical machine
+  - so all up / all down on machine, by design
+
+- can share folders and folders w/ tcp/ip connections between them
+
+- BFFs:
+  - <a href="https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/">kubeadm</a> (cluster)
+  - <a href="https://kubernetes.io/docs/getting-started-guides/minikube/">minikube</a> (mac)
+
+---
+### Kubernetes
+
+- scheduling
+- load / resource balancing / high availability
+- versioning and rolling rollout
+  - ... with rollback
+- secrets
+- can "prefer" placement, when avail
+  - eg: derive on primary if resources avail
+    - saves network copying
+    - else derive like normal, remote, copy item down first..
+
+---
+### pods, services, controllers -- o mai!
+
+<a href="https://coreos.com/kubernetes/docs/latest/services.html">
+  <img src="https://coreos.com/kubernetes/docs/latest/img/service.svg"/>
+</a>
+
+#### _Excellent Overview_ - concepts, history, rationale:
+- https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/ \*
+- https://coreos.com/kubernetes/docs/latest/services.html
+
+
+
+<small style="color:#777">\* and Jeopardy! answer ;-)</small>
 
 ---
 <!-- .slide: data-background="https://media.giphy.com/media/Gdjgn0hy8zBRK/giphy.gif" -->
 # Demo Time!
 
----
-### Let's table that discussion
 
-| fruity   | color                    | etc |
-| -------- |:------------------------ |:----|
-| orange   | well, i mean it's orange | tic |
-| banana   | mushy                    | tac |
+
+---
+### K8 Demo Time
+- using _kubeadm_ tool - 1 master; 3 nodes
+- kallr
+  - ```watch -dc -n 1 kubectl get deploy,rs,pods,services --all-namespaces```
+- kube-dev1
+  - kubeadm-setup-master
+  - kwebnode
+  - kwebnode-scale
+- kube-dev2..4
+  - kubeadm-setup-node
+
+---
+### K8 Demo Time
+- kproxy
+  - /etc/hosts localhost archive.org
+  - dashboard http://localhost:81/ui
+    - deployments
+      - scale
+    - secrets
+    - nodes
+      - conditions
+    - pods
+      - logs
+
+
+---
+### K8 Demo Time
+- https://archive.org/details/camels (not located)
+- https://archive.org/details/prelinger (located recently, OK)
+- https://archive.org/services/whathost.php
+
+- ```sudo docker exec -it [CONTAINER] zsh```
+  - ```supervisorctl status```
+  - ```ps fauxxx```
+
+
+---
+## ACT II: Transformation
+
+---
+#### Change, change, changers
+- _All item changes in containers_
+  - only single dir visible / writable - same model:
+  - if item dir local:
+    - r/w shared volume
+    - process
+  - inside IA, item dir remote:
+    - rsync item over
+    - process
+    - copy back incremental / final updates (see Act III)
+  - if you're in Russia:
+    - item public?
+      - [YES] /compress/ pulldown
+      - [NO] ia jake tool!
+    - ia jake tool when done! (S3 back in)
+
+
+---
+### ... and prosper
+- _workers managed by Kubernetes_
+  - allows ramp up/down based on webnodes
+    - or other processing
+  - could derive on primary when avail
+
+---
+### moar
+- _datanode container_
+  - for item serving - _readonly_
+  - light processing, eg:
+    - page/image transforms
+    - zipview
+    - ZOTF
+  - `/petabox/docker/supervisord.conf.datanode`
+    - nginx
+      - nginx-priv
+    - php-cgi
+      - php-cgi-priv
+    - locatord
+    - cron
+    - live-stats
+    - apache2
+    - nullmailer
+    - rsync
+
+---
+### Whut?
+
+| ia600600\*| Container     | What?                         | When?               |
+| --------  |:-------------:| :---------------------------- |:--------------------|
+|           | _datanode_    | items serving                 | always              |
+|           | _workerA_     | itemA modifier, eg: fixer task| on demand           |
+|           | workerB       | itemB modifier                | on demand           |
+|           |  "            |  "                            |  "                  |
+|           | _worker1_     | deriving                      | as resources avail  |
+|           | worker2       | deriving                      | as resources avail  |
+|           |  "            |  "                            |  "                  |
+|           | _webnode_     | archive.org                   | lottery / as needed |
+
+<small>\* random primary</small>
+
+
+---
+### where's the fire?
+- faster OS upgrades
+- decouple baseline OS and apps
+- split:
+  - item serving (eg: S3)
+  - item processing (eg: EC2)
+- more efficient use of IA resources
+- industry std
+  - &lt;redacted&gt; dumping PHX bespoke datacenter for Google Compute Platform
+
+- we have "< MVP" working now!
+
+
+
+---
+# ACT III: Resolution
+
+
+---
+### Maybes
+- Could allow remote (non-IA) modifiers to upload logs w/ new/changed item files
+- Container Linux / CoreOS (based on Gentoo Linux (compiled per machine, v. efficient))
+  - docker / rkt builtin
+  - super thin / small
+  - security paranoid; auto-updates
+  - auto-versions
+  - huge K8 contributors
+  - then.. [/0 .. /35] raw dirs?
+
+- Lambda?
+
+---
+### Open Issues / Brainstorm
+- logs / stats
+  - industry std is to send/collect to one big resource
+    - can drop log rotates / cron daily push/pull
+    - can be more realtime
+    - eg: logstash, rsyslog, et al
+
+- local OCR?
+
+- UDP locate?
+  - have MDAPI / redis do/handle?
+
+
 
 ---
 <!-- .slide: data-background="https://media.giphy.com/media/q4ICE9wYvOwBG/giphy.gif" -->
