@@ -23,6 +23,15 @@ require('reveal.js/lib/js/head.min.js', function() {
   // then rebuild the body with the proper markup wrapping the markdown
   var body = document.getElementsByTagName('body')[0];
   var markdown = body.innerHTML;
+
+  // for bulleted lists..
+  // handle 'soft tabs' of TAB getting turned into 2 SPACE chars
+  markdown = (markdown
+    .replace(/\n  \- /g, '\n\t- ')
+    .replace(/\n    \- /g, '\n\t\t- ')
+    .replace(/\n      \- /g, '\n\t\t\t- ')
+    .replace(/\n        \- /g, '\n\t\t\t\t- '))
+
   body.innerHTML = ('\n\
     <div class="reveal">\n\
     	<div class="slides">\n\
