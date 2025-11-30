@@ -1,4 +1,4 @@
-<!doctype html><head><script src="eveal.js"></script></head><body>
+<!doctype html><head><meta charset="utf-8"/><script>window.REMOTE=1</script><script src="https://tracey.archive.org/eveal.js/eveal.js"></script><title>Docker Talker: Overview of Docker & Kubernetes + Ideas for Future Usage</title></head><body>
 
 # Docker Talker
 ### Overview of Docker & Kubernetes</br> + Ideas for Future Usage
@@ -15,7 +15,7 @@
 
 
 <a href="https://docker.com">
-  <img src="https://www.docker.com/sites/default/files/mono_vertical_large.png" style="position:fixed; left:0; bottom:0; max-width:10%;"/>
+  <img src="docker.png" style="position:fixed; left:0; bottom:0; max-width:10%;"/>
 </a>
 <a href="https://archive.org">
   <img src="https://archive.org/images/glogo.png" style="position:fixed; bottom:0; left:45%;"/>
@@ -146,8 +146,8 @@ It aims to provide a "platform for automating deployment, scaling, and operation
 ---
 ### pods, services, controllers -- o mai!
 
-<a href="https://coreos.com/kubernetes/docs/latest/services.html">
-  <img src="https://coreos.com/kubernetes/docs/latest/img/service.svg"/>
+<a href="https://web.archive.org/web/20190716092836/https://coreos.com/kubernetes/docs/latest/services.html">
+  <img src="service.svg"/>
 </a>
 
 #### _Excellent Overview_ - concepts, history, rationale:
@@ -230,7 +230,7 @@ It aims to provide a "platform for automating deployment, scaling, and operation
   - could derive on primary when avail
 
 ---
-### moar
+#### moar
 - _datanode container_
   - for item serving - _readonly_
   - light processing, eg:
@@ -238,10 +238,8 @@ It aims to provide a "platform for automating deployment, scaling, and operation
     - zipview
     - ZOTF
   - `/petabox/docker/supervisord.conf.datanode`
-    - nginx
-      - nginx-priv
-    - php-cgi
-      - php-cgi-priv
+    - nginx & nginx-priv
+    - php-cgi & php-cgi-priv
     - locatord
     - cron
     - live-stats
@@ -250,21 +248,18 @@ It aims to provide a "platform for automating deployment, scaling, and operation
     - rsync
 
 ---
-### Whut?
+### Whut? (a random primary node)
 
-| ia600600\*| Container     | What?                         | When?               |
-| --------  |:-------------:| :---------------------------- |:--------------------|
-|           | _datanode_    | items serving                 | always              |
-|           | _workerA_     | itemA modifier, eg: fixer task| on demand           |
-|           | workerB       | itemB modifier                | on demand           |
-|           |  "            |  "                            |  "                  |
-|           | _worker1_     | deriving                      | as resources avail  |
-|           | worker2       | deriving                      | as resources avail  |
-|           |  "            |  "                            |  "                  |
-|           | _webnode_     | archive.org                   | lottery / as needed |
-
-<small>\* random primary</small>
-
+| ia600600 | Container | What? | When? |
+| :--------: | :-----------: | :---------------------------: | :-----------------: |
+| | _datanode_ | items serving | always |
+| | _workerA_ | itemA modifier, eg: fixer task| on demand |
+| | workerB | itemB modifier | on demand |
+| | " | " | " |
+| | _worker1_ | deriving | as resources avail |
+| | worker2 | deriving | as resources avail |
+| | " | " | " |
+| | _webnode_ | archive.org | lottery / as needed |
 
 ---
 ### where's the fire?
